@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.summary = "Crashde.sk Rails Integration"
   gem.description = "crashdesk-rails is the Rails gem for integration with crashde.sk servers"
   gem.email = "info@crashde.sk"
-  gem.files =  Dir['lib/**/*'] + Dir['spec/**/*'] + Dir['*.rb'] + ["crashdesk-rails.gemspec"]
+  gem.files =  Dir['lib/**/*'] + Dir['spec/**/*'] + Dir['*.rb'] + ["crashdesk-rails.gemspec", "Rakefile"]
   gem.homepage = "http://crashde.sk"
   gem.require_paths = ["lib"]
   gem.rubyforge_project = "crashdesk-rails"
