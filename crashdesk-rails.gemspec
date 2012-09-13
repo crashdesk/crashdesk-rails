@@ -4,7 +4,7 @@ require File.expand_path('../lib/crashdesk-rails/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.name = 'crashdesk-rails'
   gem.version = CrashdeskRails::VERSION
-  gem.authors = ["Ladislav Martincik"]
+  gem.authors = ["Ladislav Martincik", "Zdenko Nevrala"]
   gem.summary = "Crashde.sk Rails Integration"
   gem.description = "crashdesk-rails is the Rails gem for integration with crashde.sk servers"
   gem.email = "info@crashde.sk"
