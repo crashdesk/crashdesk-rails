@@ -13,5 +13,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.rubyforge_project = "crashdesk-rails"
   gem.add_dependency('crashdesk', '~> 0')
+  gem.add_dependency('crashdesk-rack', '~> 0')
   gem.add_dependency('rails', '~> 3.0')
 end

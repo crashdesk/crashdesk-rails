@@ -5,14 +5,16 @@ module CrashdeskRails
       base.send(:alias_method_chain, :render_exception, :crashdesk)
     end
 
-    # We are overriding this method as we don't want
-    # to write our own middleware yet.
     def render_exception_with_crashdesk(env, exception)
       request = Rack::Request.new(env)
       context = ActionControllerContext.new(env['action_controller.instance'], request)
 
-      crashlog = Crashdesk.crashlog(exception, request, context)
-      crashlog.report
+      begin
+        crashlog = Crashdesk.crashlog(exception, request, context)
+        crashlog.report
+      rescue Exception => e
+        $stderr.puts "Crashdesk gem can has a bug: #{e.message}"
+      end
 
       render_exception_without_crashdesk(env, exception)
     end
