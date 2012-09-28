@@ -1,6 +1,10 @@
 module CrashdeskRails
   class Railtie < Rails::Railtie
 
+    initializer "crashdesk.middleware" do |app|
+      app.config.middleware.insert 0, "Crashdesk::Rack"
+    end
+
     config.after_initialize do |app|
       Crashdesk.configure do |config|
         config.logger           ||= ::Rails.logger
@@ -8,19 +12,11 @@ module CrashdeskRails
         config.project_root     ||= ::Rails.root
       end
 
-      Crashdesk.log 'Crahsdesk initializing.'
+      Crashdesk.log 'Crashdesk initializing.'
 
-      if defined? ::ActionDispatch::DebugExceptions
+      if defined? ::ActionDispatch::DebugExceptions || defined? ::ActionDispatch::ShowExceptions
         Crashdesk.log 'Crashdesk integrated via including DebugExceptions module.'
-        # DebugException is middleware inside Rails
-        # Would be nice to have our own with nice message rendering.
         ::ActionDispatch::DebugExceptions.send(:include, CrashdeskRails::DebugExceptions)
-
-        # Also there's ShowException middleware we could override with much
-        # nicer default rendering.
-      else
-        Crashdesk.log 'Crashdesk integrated via middleware.'
-        app.config.middleware.use "CrashdeskRails::Middleware"
       end
     end
 
