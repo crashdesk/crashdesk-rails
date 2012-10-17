@@ -2,7 +2,7 @@ module CrashdeskRails
   class Railtie < Rails::Railtie
 
     initializer "crashdesk.middleware" do |app|
-      app.config.middleware.insert 0, "Crashdesk::Rack"
+      app.config.middleware.insert 0, "CrashdeskRack::Rack"
     end
 
     config.after_initialize do |app|
